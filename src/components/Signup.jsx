@@ -1,10 +1,15 @@
 import { useState } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { validateSignup } from "../utils/validators";
+import { useNavigate } from "react-router-dom";
 
 
 const Signup = () => {
-  
+
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
+  const [errMessage, setErrMessage] = useState({});
   const [signupData, setSignupData] = useState({
     name: "",
     email: "",
@@ -23,9 +28,17 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const {errors, isValid} = validateSignup(signupData)
+    console.log("is valid:", isValid);
 
+    setErrMessage(errors);
+
+    if (isValid) {
+      navigate("/success")
+    }
 
   }
+  console.log("err message:", errMessage)
 
   return (
     <div>
@@ -39,7 +52,7 @@ const Signup = () => {
         className='flex flex-col border-2 rounded-2xl m-6 p-6'
       >
 
-        <label>Name</label>
+        <label className="px-2">Name</label>
         <input 
           type="text" 
           name="name"
@@ -48,8 +61,12 @@ const Signup = () => {
           onChange={hnadleChange}
           className='rounded-2xl border-2 border-gray-200 mb-2 mt-1 px-2 py-1 focus:border-gray-300 focus:outline-none'
         />
+        {/* error message */}
+        {errMessage?.name && <p className="text-sm text-red-500 px-2 py-1">
+          {errMessage?.name}
+        </p>}
 
-        <label>Email</label>
+        <label className="px-2">Email</label>
         <input 
           type="email" 
           name="email"
@@ -58,10 +75,14 @@ const Signup = () => {
           onChange={hnadleChange}
           className='rounded-2xl border-2 border-gray-200 mb-2 mt-1 px-2 py-1 focus:border-gray-300 focus:outline-none'
         />
+        {/* error message */}
+        {errMessage?.email && <p className="text-sm text-red-500 px-2 py-1">
+          {errMessage?.email}
+        </p>}
 
         <div className="relative">
 
-          <label>Password</label>
+          <label className="px-2">Password</label>
           <input 
             type={showPassword ? "text" : "password"} 
             name="password"
@@ -76,12 +97,16 @@ const Signup = () => {
           >
            {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
+          {/* error message */}
+        {errMessage?.password && <p className="text-sm text-red-500 px-2 py-1">
+          {errMessage?.password}
+        </p>}
 
         </div>
 
         <div className="relative">
 
-          <label>Confirm Password</label>
+          <label className="px-2">Confirm Password</label>
           <input 
             type={showPassword ? "text" : "password"}
             name="confirmPassword"
@@ -97,6 +122,10 @@ const Signup = () => {
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
+          {/* error message */}
+        {errMessage?.confirmPassword && <p className="text-sm text-red-500 -translate-y-1/2 px-2 py-1">
+          {errMessage?.confirmPassword}
+        </p>}
 
         </div>
 
