@@ -17,7 +17,7 @@ const Signup = () => {
     confirmPassword: ""
   });
 
-  const hnadleChange = (e) => {
+  const handleChange = (e) => {
     setSignupData({
       ...signupData,
       [e.target.name]: e.target.value
@@ -61,7 +61,7 @@ const Signup = () => {
           name="name"
           value={signupData.name}
           placeholder='Enter Your Name'
-          onChange={hnadleChange}
+          onChange={handleChange}
           className='rounded-2xl border-2 border-gray-200 mb-2 mt-1 px-2 py-1 focus:border-gray-300 focus:outline-none'
         />
         {/* error message */}
@@ -75,7 +75,7 @@ const Signup = () => {
           name="email"
           value={signupData.email}
           placeholder='name@gmail.com'
-          onChange={hnadleChange}
+          onChange={handleChange}
           className='rounded-2xl border-2 border-gray-200 mb-2 mt-1 px-2 py-1 focus:border-gray-300 focus:outline-none'
         />
         {/* error message */}
@@ -91,7 +91,7 @@ const Signup = () => {
             name="password"
             value={signupData.password}
             placeholder='Enter Your Password'
-            onChange={hnadleChange}
+            onChange={handleChange}
             className='rounded-2xl border-2 border-gray-200 mb-2 mt-1 px-2 py-1 w-full focus:border-gray-300 focus:outline-none'
           />
           <span 
@@ -115,7 +115,7 @@ const Signup = () => {
             name="confirmPassword"
             value={signupData.confirmPassword}
             placeholder='Re-Enter Your Password'
-            onChange={hnadleChange}
+            onChange={handleChange}
             className='rounded-2xl border-2 border-gray-200 mb-2 mt-1 px-2 py-1 w-full focus:border-gray-300 focus:outline-none'
           />
 
@@ -126,7 +126,7 @@ const Signup = () => {
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
           {/* error message */}
-        {errMessage?.confirmPassword && <p className="text-sm text-red-500 -translate-y-1/2 px-2 py-1">
+        {errMessage?.confirmPassword && <p className="text-sm text-red-500 px-2 py-1">
           {errMessage?.confirmPassword}
         </p>}
 
