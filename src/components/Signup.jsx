@@ -34,7 +34,10 @@ const Signup = () => {
     setErrMessage(errors);
 
     if (isValid) {
-      navigate("/success")
+      navigate("/success", {state: {
+        message: "Signup Successful 🎉",
+        para: "Your account has been created successfully."
+      }})
     }
 
   }
