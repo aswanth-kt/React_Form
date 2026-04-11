@@ -9,6 +9,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errMessage, setErrMessage] = useState({});
   const [signupData, setSignupData] = useState({
     name: "",
@@ -22,18 +23,24 @@ const Signup = () => {
       ...signupData,
       [e.target.name]: e.target.value
     })
+
+    const {errors, isValid} = validateSignup(signupData);
+    setLoading(isValid);
+    console.log("is valid:", isValid);
+
+    setErrMessage(errors);
   };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const {errors, isValid} = validateSignup(signupData)
-    console.log("is valid:", isValid);
+    // const {errors, isValid} = validateSignup(signupData)
+    // console.log("is valid:", isValid);
 
-    setErrMessage(errors);
+    // setErrMessage(errors);
 
-    if (isValid) {
+    if (loading) {
       navigate("/success", {state: {
         message: "Signup Successful 🎉",
         para: "Your account has been created successfully."

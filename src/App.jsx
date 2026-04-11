@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Signup from './components/Signup'
+import Signup from './pages/Signup'
 import SuccessMessage from './components/SuccessMessage'
 import Login from './components/Login'
 
