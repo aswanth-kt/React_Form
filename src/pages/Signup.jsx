@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputForm from "../components/InputForm"
 import { validateSignup } from "../utils/validators";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Signup = () => {
@@ -54,7 +54,7 @@ const Signup = () => {
     if (!isValid) return;
 
     setLoading(true);
-    
+
     navigate("/success", {
       state: {
         message: "Signup Successful 🎉",
@@ -149,6 +149,16 @@ const Signup = () => {
         >
           {loading ? "Creating Account..." : "Signin"}
         </button>
+
+        <p className="text-sm mt-4 text-center text-gray-500">
+          Already have an Account? <span> </span>
+          <Link 
+            to="/login"
+            className="text-blue-500 hover:text-blue-800"
+          >
+            Login
+          </Link>
+        </p>
 
       </form>
 

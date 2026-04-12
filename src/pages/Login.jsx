@@ -1,6 +1,7 @@
 import { useState } from "react"
 import InputForm from "../components/InputForm"
 import { validteLogin } from "../utils/validators";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -80,6 +81,16 @@ const Login = () => {
         >
           Login
         </button>
+
+        <p className="text-sm mt-4 text-center text-gray-500">
+          Don't have an Account? <span> </span>
+          <Link 
+            to="/signup"
+            className="text-blue-500 hover:text-blue-800"
+          >
+            Signup
+          </Link>
+        </p>
 
       </form>
 
