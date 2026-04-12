@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Signup from './components/Signup'
+import Signup from './pages/Signup'
 import SuccessMessage from './components/SuccessMessage'
+import Login from './pages/Login'
 
 function App() {
 
@@ -14,6 +15,11 @@ function App() {
         <Route 
           path='/signup'
           element={<Signup />} 
+        />
+
+        <Route 
+          path='/login'
+          element={<Login />} 
         />
 
         <Route 
