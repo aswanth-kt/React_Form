@@ -27,6 +27,6 @@ export const validteLogin = (values) => {
   if (!values.password.trim()) errors.password = "Password required";
   else if (values.password.length < 6) errors.password = "Min 6 charactors"
 
-  return errors;
+  return { errors };
 
 }
