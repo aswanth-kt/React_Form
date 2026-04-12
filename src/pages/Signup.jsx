@@ -20,6 +20,7 @@ const Signup = () => {
     confirmPassword: false
   });
   const [touched, setTouched] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
 
@@ -41,17 +42,19 @@ const Signup = () => {
     setErrors(errors)
 
   };
-  console.log("touched:", touched)
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    
     const { errors, isValid } = validateSignup(signupData);
 
     setErrors(errors);
 
     if (!isValid) return;
 
+    setLoading(true);
+    
     navigate("/success", {
       state: {
         message: "Signup Successful 🎉",
@@ -141,9 +144,10 @@ const Signup = () => {
 
         <button
           type="submit"
+          disabled={loading}
           className="rounded-2xl bg-blue-500 p-2 text-white mt-4 hover:bg-blue-700 disabled:opacity-50"
         >
-          Signin
+          {loading ? "Creating Account..." : "Signin"}
         </button>
 
       </form>
