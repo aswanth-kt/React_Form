@@ -19,6 +19,7 @@ const Signup = () => {
     password: false,
     confirmPassword: false
   });
+  const [touched, setTouched] = useState({});
 
   const handleChange = (e) => {
 
@@ -27,11 +28,20 @@ const Signup = () => {
       [e.target.name]: e.target.value
     })
 
-    const {errors} = validateSignup(signupData);
+  };
 
-    setErrors(errors);
+  const handleBlur = (e) => {
+    
+    setTouched({
+      ...touched,
+      [e.target.name]: true
+    })
+
+    const { errors } = validateSignup(signupData)
+    setErrors(errors)
 
   };
+  console.log("touched:", touched)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,7 +81,10 @@ const Signup = () => {
           value={signupData.name}
           placeholder="Enter your name"
           onChange={handleChange}
+          onBlur={handleBlur}
           error={errors.name}
+          errors={errors}
+          touched={touched}
         />
 
         <InputForm 
@@ -80,7 +93,10 @@ const Signup = () => {
           value={signupData.email}
           placeholder="name@example.com"
           onChange={handleChange}
+          onBlur={handleBlur}
           error={errors.email}
+          errors={errors}
+          touched={touched}
         />
 
         <InputForm 
@@ -89,7 +105,10 @@ const Signup = () => {
           value={signupData.password}
           placeholder="Enter your password"
           onChange={handleChange}
+          onBlur={handleBlur}
           error={errors.password}
+          errors={errors}
+          touched={touched}
           isPassword={true}
           showPassword={showPassword.password}
           togglePassword={() => {
@@ -106,7 +125,10 @@ const Signup = () => {
           value={signupData.confirmPassword}
           placeholder="Re-enter your password"
           onChange={handleChange}
+          onBlur={handleBlur}
           error={errors.confirmPassword}
+          errors={errors}
+          touched={touched}
           isPassword={true}
           showPassword={showPassword.confirmPassword}
           togglePassword={() => {

@@ -12,6 +12,9 @@ const InputForm = ({
   isPassword= false,
   showPassword,
   togglePassword,
+  errors,
+  touched,
+  onBlur
 }) => {
   return (
     
@@ -31,6 +34,7 @@ const InputForm = ({
           name={name}
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
           placeholder={placeholder}
           className="w-full rounded-2xl border-2 border-gray-200 p-2 focus:border-gray-300 focus:outline-none"
         />
@@ -44,7 +48,7 @@ const InputForm = ({
           </span>
         )}
 
-        {error && (
+        {touched[name] && errors[name] && (
           <p className="text-sm text-red-500 px-2 py-1">
             {error}
           </p>
