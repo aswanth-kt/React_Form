@@ -36,7 +36,7 @@ const InputForm = ({
           onChange={onChange}
           onBlur={onBlur}
           placeholder={placeholder}
-          className="w-full rounded-2xl border-2 border-gray-200 p-2 focus:border-gray-300 focus:outline-none placeholder:text-[var(--placeholder)]"
+          className="w-full rounded-2xl border-gray-200 p-2 focus:border-gray-300 focus:outline-none placeholder:text-[var(--placeholder)] bg-[#363b46]"
         />
 
         {isPassword && (
@@ -44,7 +44,7 @@ const InputForm = ({
             onClick={togglePassword}
             className="absolute right-3 py-3 cursor-pointer"
           >
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
+            {showPassword ? <FaEye className="text-white"/> : <FaEyeSlash className="text-white"/>}
           </span>
         )}
 
