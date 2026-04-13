@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 
+:root {
+  --bg: #0F172A;
+  --card-bg: #111827;
+  --border: #374151;
+  --text: #E5E7EB;
+  --heading: #FFFFFF;
+  --subtext: #9CA3AF;
+  --placeholder: #c1c3c7;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +21,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #ffffff;
+  background-color: var(--bg);
   color: #222;
 }
 

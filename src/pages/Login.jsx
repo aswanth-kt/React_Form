@@ -2,6 +2,7 @@ import { useState } from "react"
 import InputForm from "../components/InputForm"
 import { validteLogin } from "../utils/validators";
 import { Link } from "react-router-dom";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 
 const Login = () => {
@@ -36,63 +37,83 @@ const Login = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="min-h-screen flex items-center justify-center px-4">
 
-      <h1 className="text-center font-bold text-xl mb-6">
-        Login
-      </h1>
-      
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col border-2 rounded-2xl p-6"
-      >
+      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-10">
+        
+        <div className="w-full md:w-1/2 max-w-xl">
 
-        <InputForm
-          label="Email"
-          name="email"
-          value={loginData.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          placeholder="Enter email"
-          error={errors.email}
-          errors={errors}
-          touched={touched}
-        />
-        <InputForm
-          label="Password"
-          name="password"
-          value={loginData.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          placeholder="Enter your pasword"
-          error={errors.password}
-          errors={errors}
-          touched={touched}
-          isPassword={true}
-          showPassword={showPassword}
-          togglePassword={() => {
-            setShowPassword(!showPassword)
-          }}
-        />
+          <DotLottieReact
+            src="https://lottie.host/0342e3f0-892c-4c41-9b62-b05e5ea21e56/VGuodNn43w.lottie"
+            loop
+            autoplay
+          />
 
-        <button
-          type="submit"
-          className="rounded-2xl bg-blue-500 p-2 text-white mt-4 hover:bg-blue-700 disabled:opacity-50"
-        >
-          Login
-        </button>
+        </div>
 
-        <p className="text-sm mt-4 text-center text-gray-500">
-          Don't have an Account? <span> </span>
-          <Link 
-            to="/signup"
-            className="text-blue-500 hover:text-blue-800"
+        {/* login form */}
+        <div className="w-full md:w-1/2 max-w-md">
+
+          <h1 className="text-center font-bold text-2xl mb-6 text-[var(--heading)]">
+            Login
+          </h1>
+          
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col border border-[var(--border)] rounded-2xl p-6 bg-[var(--card-bg)] shadow-lg"
           >
-            Signup
-          </Link>
-        </p>
 
-      </form>
+            <InputForm
+              label="Email"
+              name="email"
+              value={loginData.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Enter email"
+              error={errors.email}
+              errors={errors}
+              touched={touched}
+            />
+            <InputForm
+              label="Password"
+              name="password"
+              value={loginData.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Enter your pasword"
+              error={errors.password}
+              errors={errors}
+              touched={touched}
+              isPassword={true}
+              showPassword={showPassword}
+              togglePassword={() => {
+                setShowPassword(!showPassword)
+              }}
+            />
+
+            <button
+              type="submit"
+              className="rounded-2xl bg-blue-500 p-2 text-white mt-4 hover:bg-blue-700 disabled:opacity-50"
+            >
+              Login
+            </button>
+
+            <p className="text-sm mt-4 text-center text-gray-500">
+              Don't have an Account? <span> </span>
+              <Link 
+                to="/signup"
+                className="text-blue-500 hover:text-blue-800"
+              >
+                Signup
+              </Link>
+            </p>
+
+          </form>
+
+        </div>
+
+      </div>
+
 
     </div>
   )

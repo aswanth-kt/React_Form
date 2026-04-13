@@ -1,52 +1,46 @@
 import { useState } from "react";
-import InputForm from "../components/InputForm"
+import InputForm from "../components/InputForm";
 import { validateSignup } from "../utils/validators";
 import { Link, useNavigate } from "react-router-dom";
-
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const Signup = () => {
-
   const navigate = useNavigate();
 
   const [signupData, setSignupData] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState({
     password: false,
-    confirmPassword: false
+    confirmPassword: false,
   });
   const [touched, setTouched] = useState({});
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-
     setSignupData({
       ...signupData,
-      [e.target.name]: e.target.value
-    })
-
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleBlur = (e) => {
-    
     setTouched({
       ...touched,
-      [e.target.name]: true
-    })
+      [e.target.name]: true,
+    });
 
-    const { errors } = validateSignup(signupData)
-    setErrors(errors)
-
+    const { errors } = validateSignup(signupData);
+    setErrors(errors);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
     const { errors, isValid } = validateSignup(signupData);
 
     setErrors(errors);
@@ -58,112 +52,127 @@ const Signup = () => {
     navigate("/success", {
       state: {
         message: "Signup Successful 🎉",
-        para: "Your account has been created successfully."
-      }
-    })
-
+        para: "Your account has been created successfully.",
+      },
+    });
   };
 
   // console.log("signup data:", signupData)
 
   return (
-    <div className="max-w-md mx-auto mt-10">
 
-      <h1 className="text-center font-bold text-xl mb-6">
-        Signup
-      </h1>
+    <div className="min-h-screen flex items-center justify-center px-4">
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col border-2 rounded-2xl p-6"
-      >
+      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between gap-10">
 
-        <InputForm 
-          label="Name"
-          name="name"
-          value={signupData.name}
-          placeholder="Enter your name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errors.name}
-          errors={errors}
-          touched={touched}
-        />
+        <div className="w-full md:w-1/2 max-w-xl">
 
-        <InputForm 
-          label="Email"
-          name="email"
-          value={signupData.email}
-          placeholder="name@example.com"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errors.email}
-          errors={errors}
-          touched={touched}
-        />
+          <DotLottieReact
+            src="https://lottie.host/5c9302d2-c647-4797-954a-d7fc93fdb7a3/MIIZkZM6CK.lottie"
+            loop
+            autoplay
+          />
 
-        <InputForm 
-          label="Password"
-          name="password"
-          value={signupData.password}
-          placeholder="Enter your password"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errors.password}
-          errors={errors}
-          touched={touched}
-          isPassword={true}
-          showPassword={showPassword.password}
-          togglePassword={() => {
-            setShowPassword((prev) => ({
-                ...prev,
-                password: !prev.password
-            }))
-          }}
-        />
+        </div>
 
-        <InputForm 
-          label="Confirm Password"
-          name="confirmPassword"
-          value={signupData.confirmPassword}
-          placeholder="Re-enter your password"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errors.confirmPassword}
-          errors={errors}
-          touched={touched}
-          isPassword={true}
-          showPassword={showPassword.confirmPassword}
-          togglePassword={() => {
-            setShowPassword((prev) => ({
-              ...prev,
-              confirmPassword: !prev.confirmPassword
-            }))
-          }}
-        />
+        {/* signup form section */}
+        <div className="w-full md:w-1/2 max-w-md">
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="rounded-2xl bg-blue-500 p-2 text-white mt-4 hover:bg-blue-700 disabled:opacity-50"
-        >
-          {loading ? "Creating Account..." : "Signin"}
-        </button>
+          <h1 className="text-center font-bold text-2xl mb-6 text-[var(--heading)]">
+            Signup
+          </h1>
 
-        <p className="text-sm mt-4 text-center text-gray-500">
-          Already have an Account? <span> </span>
-          <Link 
-            to="/login"
-            className="text-blue-500 hover:text-blue-800"
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col border border-[var(--border)] rounded-2xl p-6 bg-[var(--card-bg)] shadow-lg"
           >
-            Login
-          </Link>
-        </p>
+            <InputForm
+              label="Name"
+              name="name"
+              value={signupData.name}
+              placeholder="Enter your name"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.name}
+              errors={errors}
+              touched={touched}
+            />
 
-      </form>
+            <InputForm
+              label="Email"
+              name="email"
+              value={signupData.email}
+              placeholder="name@example.com"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.email}
+              errors={errors}
+              touched={touched}
+            />
+
+            <InputForm
+              label="Password"
+              name="password"
+              value={signupData.password}
+              placeholder="Enter your password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.password}
+              errors={errors}
+              touched={touched}
+              isPassword={true}
+              showPassword={showPassword.password}
+              togglePassword={() => {
+                setShowPassword((prev) => ({
+                  ...prev,
+                  password: !prev.password,
+                }));
+              }}
+            />
+
+            <InputForm
+              label="Confirm Password"
+              name="confirmPassword"
+              value={signupData.confirmPassword}
+              placeholder="Re-enter your password"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.confirmPassword}
+              errors={errors}
+              touched={touched}
+              isPassword={true}
+              showPassword={showPassword.confirmPassword}
+              togglePassword={() => {
+                setShowPassword((prev) => ({
+                  ...prev,
+                  confirmPassword: !prev.confirmPassword,
+                }));
+              }}
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="rounded-2xl bg-blue-500 p-2 text-white mt-4 hover:bg-blue-700 disabled:opacity-50"
+            >
+              {loading ? "Creating Account..." : "Signin"}
+            </button>
+
+            <p className="text-sm mt-4 text-center text-gray-500">
+              Already have an Account? <span> </span>
+              <Link to="/login" className="text-blue-500 hover:text-blue-800">
+                Login
+              </Link>
+            </p>
+
+          </form>
+
+        </div>
+
+      </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

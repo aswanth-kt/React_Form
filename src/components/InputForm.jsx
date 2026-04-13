@@ -22,7 +22,7 @@ const InputForm = ({
 
       <label 
         htmlFor={name}
-        className="px-2"
+        className="px-2 text-[var(--subtext)]"
       >
         {label}
       </label>
@@ -36,7 +36,7 @@ const InputForm = ({
           onChange={onChange}
           onBlur={onBlur}
           placeholder={placeholder}
-          className="w-full rounded-2xl border-2 border-gray-200 p-2 focus:border-gray-300 focus:outline-none"
+          className="w-full rounded-2xl border-2 border-gray-200 p-2 focus:border-gray-300 focus:outline-none placeholder:text-[var(--placeholder)]"
         />
 
         {isPassword && (
