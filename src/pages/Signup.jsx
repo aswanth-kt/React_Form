@@ -20,12 +20,16 @@ const Signup = () => {
   });
   const [touched, setTouched] = useState({});
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState();
 
   const handleChange = (e) => {
     setSignupData({
       ...signupData,
       [e.target.name]: e.target.value,
     });
+
+    const { errors } = validateSignup(signupData);
+    setErrors(errors);
   };
 
   const handleBlur = (e) => {
@@ -45,7 +49,10 @@ const Signup = () => {
 
     setErrors(errors);
 
-    if (!isValid) return;
+    if (!isValid) {
+      setMessage("Please complete all required fields");
+      return
+    }
 
     setLoading(true);
 
@@ -157,6 +164,12 @@ const Signup = () => {
             >
               {loading ? "Creating Account..." : "Signin"}
             </button>
+
+            {message && (
+              <p className="text-red-500 text-center mt-2">
+                {message}
+              </p>
+            )}
 
             <p className="text-sm mt-4 text-center text-gray-500">
               Already have an Account? <span> </span>

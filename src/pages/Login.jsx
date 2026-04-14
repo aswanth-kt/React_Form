@@ -1,11 +1,13 @@
 import { useState } from "react"
 import InputForm from "../components/InputForm"
 import { validteLogin } from "../utils/validators";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 
 const Login = () => {
+
+  const navigate = useNavigate()
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -14,12 +16,16 @@ const Login = () => {
   const [touched, setTouched] = useState({})
   const [errors, setErrors] = useState({})
   const [showPassword, setShowPassword] = useState(false)
+  const [message, setMessage] = useState()
 
   const handleChange = (e) => {
     setLoginData({
       ...loginData,
       [e.target.name]: e.target.value
-    })
+    });
+
+    const { errors } = validteLogin(loginData)
+    setErrors(errors)
   };
 
   const handleBlur = (e) => {
@@ -33,7 +39,25 @@ const Login = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    const { errors, isValid } = validteLogin(loginData);
+
+    setErrors(errors);
+    console.log(errors)
+
+    if (!isValid) {
+      setMessage("Please complete all required fields");
+      return;
+    };
+
+    navigate("/success", {
+      state: {
+        message: "Login Successful 🎉",
+        para: "Your dashboard.",
+      },
+    });
+
   }
 
   return (
@@ -97,6 +121,12 @@ const Login = () => {
             >
               Login
             </button>
+
+            {message && (
+              <p className="text-red-500 text-center mt-2">
+                {message}
+              </p>
+            )}
 
             <p className="text-sm mt-4 text-center text-gray-500">
               Don't have an Account? <span> </span>
