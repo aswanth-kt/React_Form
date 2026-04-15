@@ -38,8 +38,6 @@ export const validteLogin = (values) => {
 
   if (!values.password.trim()) errors.password = "Password required";
 
-  else if (values.password.length < 6) errors.password = "Min 6 charactors"
-
   else if (!/(?=.*[A-Z])/.test(values.password)) errors.password = "Password must contain at least one uppercase letter"
 
   else if (!/(?=.*[a-z])/.test(values.password)) errors.password = "Password must contain at least one lowercase letter"
@@ -47,6 +45,9 @@ export const validteLogin = (values) => {
   else if (!/(?=.*\d)/.test(values.password)) errors.password = "Password must contain at least one number"
 
   else if (!/(?=.*[@$!%*?&])/.test(values.password)) errors.password = "Password must contain at least 1 special character"
+
+  else if (values.password.length < 6) errors.password = "Min 6 charactors"
+  
 
   const isValid = Object.keys(errors).length === 0
 

@@ -44,7 +44,6 @@ const Login = () => {
     const { errors, isValid } = validteLogin(loginData);
 
     setErrors(errors);
-    console.log(errors)
 
     if (!isValid) {
       setMessage("Please complete all required fields");
@@ -84,7 +83,7 @@ const Login = () => {
           
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col border border-[var(--border)] rounded-2xl p-6 bg-[var(--card-bg)] shadow-lg"
+            className="flex flex-col border border-[var(--border)] rounded-2xl p-6 bg-[var(--card-bg)] shadow-lg backdrop-blur-sm"
           >
 
             <InputForm
