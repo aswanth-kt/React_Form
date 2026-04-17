@@ -112,12 +112,7 @@ npm run dev
 
 You can watch a quick walkthrough of the project here:
 
-👉 [Watch Demo Video](#)
-
-### 📌 Preview
-
-![Demo Preview](./assets/demo.gif)
-
+👉 [Watch Demo Video](https://youtu.be/bwihFSKA7vI)
 
 ---
 
